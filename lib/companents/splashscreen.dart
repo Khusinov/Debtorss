@@ -1,6 +1,9 @@
 import 'dart:async';
 
-import 'package:debtors/pages/homepage.dart';
+import 'package:debtors/companents/homepage.dart';
+import 'package:debtors/companents/login/loginScreen.dart';
+
+import 'package:debtors/companents/splashscreen.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -15,14 +18,14 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Timer(Duration(seconds: 3), () {
       Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (_) => HomePage()));
+          .pushReplacement(MaterialPageRoute(builder: (_) => LoginScreen()));
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightBlue[600],
+      backgroundColor: Color(0xff6CA3FD),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
