@@ -1,11 +1,22 @@
-import 'package:debtors/companents/splashscreen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter/material.dart';
-import 'package:debtors/companents/login/loginScreen.dart';
+import 'package:debtors/Screens/Welcome/components/body.dart';
+import 'package:debtors/Screens/Welcome/welcome_screen.dart';
+import 'package:debtors/constants.dart';
 
-void main() => runApp(MaterialApp(
-  debugShowCheckedModeBanner: false,
-  home: SplashScreen(),
-));
+void main() => runApp(MyApp());
 
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Auth',
+      theme: ThemeData(
+        primaryColor: kPrimaryColor,
+        scaffoldBackgroundColor: Colors.white,
+      ),
+      home: SplashScreen(),
+    );
+  }
+}
