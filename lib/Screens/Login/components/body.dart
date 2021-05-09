@@ -3,6 +3,8 @@ import 'package:debtors/Screens/Login/components/background.dart';
 import 'package:debtors/companents/rounded_button.dart';
 import 'package:debtors/companents/rounded_input_field.dart';
 import 'package:debtors/companents/rounded_password_field.dart';
+
+import 'package:debtors/Screens/List/list_screen.dart';
 import 'package:flutter_svg/svg.dart';
 
 class Body extends StatelessWidget {
@@ -18,12 +20,10 @@ class Body extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-           
-           SizedBox(height: size.height*0.00001),
+            SizedBox(height: size.height * 0.00001),
             Image.asset(
               "assets/images/debtorsBlue.png",
               height: size.height * 0.25,
-
             ),
             //  Text(
             //   "KIRISH",
@@ -43,10 +43,14 @@ class Body extends StatelessWidget {
             ),
             RoundedButton(
               text: "KIRISH",
-              press: () {},
+              press: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ListScreen()),
+                );
+              },
             ),
             SizedBox(height: size.height * 0.03),
-          
           ],
         ),
       ),
