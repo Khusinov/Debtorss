@@ -1,6 +1,8 @@
+import 'package:debtors/Screens/Add/addAccount.dart';
 import 'package:flutter/material.dart';
 import 'package:debtors/constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:debtors/Screens/Details/details.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -8,42 +10,46 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  ListView buildListView() {
+  ListView buildListView(BuildContext context) {
     return ListView.builder(
       itemCount: 50,
       itemBuilder: (_, index) {
         return GestureDetector(
-          onTap: () => {
-            print('$index'),
-          }
-
-          ,
-          child: Container
-          (
-            padding: EdgeInsets.symmetric(vertical: 4,horizontal: 10),
-                      child: ClipRRect(
+          onTap: () => {},
+          child: Container(
+            padding: EdgeInsets.symmetric(vertical: 4, horizontal: 10),
+            child: ClipRRect(
               borderRadius: BorderRadius.circular(29),
-              
-                        child: Container(
-                        
-                          color: kPrimaryYellow,
-                                             child: ListTile(
-                title: Text(
-                  '${index+1}. Asadbek Bekchanov',
-                  style: TextStyle(
-                    color: Colors.blue,
-                    fontSize: 20,
+              child: Container(
+                color: kPrimaryYellow,
+                child: ListTile(
+                  title: Text(
+                    '${index + 1}. Asadbek Bekchanov',
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontSize: 20,
+                    ),
                   ),
+                  subtitle: Text(
+                    '320 000 so\'m  27.06.2021',
+                    style: TextStyle(color: Colors.redAccent),
+                  ),
+                  trailing: Icon(
+                    Icons.arrow_forward,
+                    size: 30,
+                    color: Colors.blue,
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => DetailPage(index)),
+                    );
+                  },
                 ),
-               trailing: Icon(
-                 Icons.add,
-                 size: 30,
-                 color: Colors.blue,
               ),
-                        ),
             ),
           ),
-        ),
         );
       },
     );
@@ -53,18 +59,20 @@ class _BodyState extends State<Body> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () { 
-          
-         },
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => AddAccount()));
+        },
         child: Icon(
           Icons.add_circle_rounded,
           size: 40,
-          ),),
+        ),
+      ),
       body: Container(
         child: Stack(
           children: [
             Image.asset("assets/images/background.png"),
-            buildListView(),
+            buildListView(context),
           ],
         ),
       ),
