@@ -21,7 +21,7 @@ class _BodyState extends State<Body> {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(29),
               child: Container(
-                color: kPrimaryYellow,
+                color: kPrimaryLightColor,
                 child: ListTile(
                   title: Text(
                     '${index + 1}. Asadbek Bekchanov',
@@ -29,6 +29,7 @@ class _BodyState extends State<Body> {
                       color: Colors.blue,
                       fontSize: 20,
                     ),
+
                   ),
                   subtitle: Text(
                     '320 000 so\'m  27.06.2021',
@@ -61,6 +62,7 @@ class _BodyState extends State<Body> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
+            
               context, MaterialPageRoute(builder: (context) => AddAccount()));
         },
         child: Icon(
