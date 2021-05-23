@@ -1,22 +1,58 @@
+import 'package:debtors/AuthenticationServise/AuthenticationServise.dart';
+import 'package:debtors/Screens/Home/HomePage.dart';
+import 'package:debtors/Screens/List/list_screen.dart';
+import 'package:debtors/Screens/Login/components/body.dart';
+import 'package:debtors/Screens/Login/login_screen.dart';
+import 'package:debtors/Screens/SignIn/SignInPage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:debtors/Screens/Welcome/components/body.dart';
-import 'package:debtors/Screens/Welcome/welcome_screen.dart';
-import 'package:debtors/constants.dart';
+import 'package:provider/provider.dart';
 
-void main() => runApp(MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Auth',
-      theme: ThemeData(
-        primaryColor: kPrimaryColor,
-        scaffoldBackgroundColor: Colors.white,
+    return MultiProvider(
+      providers: [
+        Provider<AuthenticationService>(
+          create: (_) => AuthenticationService(FirebaseAuth.instance),
+        ),
+        StreamProvider(
+          create: (context) =>
+              context.read<AuthenticationService>().authStateChanges,
+        )
+      ],
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        home: AuthenticationWrapper(),
       ),
-      home: SplashScreen(),
     );
+  }
+}
+
+class AuthenticationWrapper extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final firebaseUser = context.watch<User>();
+
+    if (firebaseUser != null) {
+      print("home page");
+      return ListScreen();
+
+    } else {
+      print('SingInPage') ;
+      return SignInPage();
+    }
+
   }
 }

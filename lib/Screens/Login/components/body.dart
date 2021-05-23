@@ -1,16 +1,13 @@
+import 'package:debtors/AuthenticationServise/AuthenticationServise.dart';
 import 'package:flutter/material.dart';
 import 'package:debtors/Screens/Login/components/background.dart';
 import 'package:debtors/companents/rounded_button.dart';
-import 'package:debtors/companents/rounded_input_field.dart';
-import 'package:debtors/companents/rounded_password_field.dart';
+import 'package:provider/provider.dart';
 
-import 'package:debtors/Screens/List/list_screen.dart';
-import 'package:flutter_svg/svg.dart';
 
 class Body extends StatelessWidget {
-  const Body({
-    Key key,
-  }) : super(key: key);
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -25,32 +22,46 @@ class Body extends StatelessWidget {
               "assets/images/debtorsBlue.png",
               height: size.height * 0.25,
             ),
-            //  Text(
-            //   "KIRISH",
-            //   style: TextStyle(
-            //     fontWeight: FontWeight.bold,
-            //     fontSize: 20,
-            //     color: Colors.blueAccent,
-            //     ),
-            // ),
+
             SizedBox(height: size.height * 0.03),
-            RoundedInputField(
-              hintText: "Nomer:",
-              onChanged: (value) {},
+
+            TextField(
+              controller: emailController,
+              decoration: InputDecoration(
+                labelText: "Email",
+              ),
             ),
-            RoundedPasswordField(
-              onChanged: (value) {},
+            TextField(
+              controller: passwordController,
+              decoration: InputDecoration(
+                labelText: "Password",
+              ),
             ),
-            RoundedButton(
-              text: "KIRISH",
-              press: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ListScreen()),
+            RaisedButton(
+              onPressed: () {
+                context.read<AuthenticationService>().signIn(
+                  email: emailController.text.trim(),
+                  password: passwordController.text.trim(),
                 );
               },
-            ),
-            SizedBox(height: size.height * 0.03),
+              child: Text("Sign in"),
+            )
+            // RoundedButton(
+            //   text: "KIRISH",
+            //   press: () {
+            //     print('button bosildi');
+            //     context.read<AuthenticationService>().signIn(
+            //         email:  emailController.text.trim(),
+            //         password: passwordController.text.trim(),
+            //         );
+            //     // Navigator.push(
+            //     //   context,
+            //     //   MaterialPageRoute(builder: (context) => ListScreen()),
+            //     // );
+            //    // AuthenticationWrapper();
+            //   },
+            // ),
+           // SizedBox(height: size.height * 0.03),
           ],
         ),
       ),

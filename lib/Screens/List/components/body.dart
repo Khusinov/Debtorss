@@ -1,9 +1,11 @@
+import 'package:debtors/AuthenticationServise/AuthenticationServise.dart';
 import 'package:debtors/Screens/Add/addAccount.dart';
 import 'package:flutter/material.dart';
 import 'package:debtors/constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import 'package:debtors/Screens/Details/details.dart';
-
+import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 class Body extends StatefulWidget {
   @override
   _BodyState createState() => _BodyState();
@@ -62,7 +64,6 @@ class _BodyState extends State<Body> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
-            
               context, MaterialPageRoute(builder: (context) => AddAccount()));
         },
         child: Icon(
@@ -80,7 +81,9 @@ class _BodyState extends State<Body> {
       ),
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+
+          },
           icon: Icon(
             Icons.account_circle_outlined,
             color: Colors.white,
@@ -91,7 +94,9 @@ class _BodyState extends State<Body> {
         titleSpacing: 20,
         actions: <Widget>[
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+
+              } ,
             icon: Icon(
               Icons.search,
               color: Colors.white,
@@ -99,7 +104,10 @@ class _BodyState extends State<Body> {
             ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              print('Log Out button ');
+              context.read<AuthenticationService>().signOut();
+            },
             icon: Icon(
               Icons.more_vert,
               color: Colors.white,

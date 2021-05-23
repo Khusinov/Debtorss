@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1056873614205",
+    "project_id": "debtors-fa237",
+    "storage_bucket": "debtors-fa237.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1056873614205:android:1501d6fb036417989d9a14",
+        "android_client_info": {
+          "package_name": "com.example.debtors"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1056873614205-c4tirlaiecnk12tnlln85d0mvktvof29.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBx2C9X8bTNPYsImNiopnOS3Aj4vFF-2A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1056873614205-c4tirlaiecnk12tnlln85d0mvktvof29.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
