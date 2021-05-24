@@ -17,7 +17,9 @@ class _BodyState extends State<Body> {
       itemCount: 50,
       itemBuilder: (_, index) {
         return GestureDetector(
-          onTap: () => {},
+          onTap: () => {
+
+          },
           child: Container(
             padding: EdgeInsets.symmetric(vertical: 4, horizontal: 10),
             child: ClipRRect(
@@ -109,7 +111,7 @@ class _BodyState extends State<Body> {
               context.read<AuthenticationService>().signOut();
             },
             icon: Icon(
-              Icons.more_vert,
+              Icons.logout,
               color: Colors.white,
               size: 28,
             ),
