@@ -53,6 +53,5 @@ class AuthenticationWrapper extends StatelessWidget {
       print('SingInPage') ;
       return SignInPage();
     }
-
   }
 }

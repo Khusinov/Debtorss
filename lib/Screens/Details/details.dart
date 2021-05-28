@@ -1,3 +1,4 @@
+import 'package:debtors/AddDate/AddData.dart';
 import 'package:debtors/companents/rounded_button.dart';
 import 'package:debtors/companents/text_field_container.dart';
 import 'package:flutter/material.dart';
@@ -122,12 +123,16 @@ String formattedDate = DateFormat('yyyy-MM-dd').format(DateTime.now());
                   ),
                   RoundedButton(
                     text: "Qo\'shish",
-                    press: () {},
+                    press: () {
+                      final AddData addData = new AddData(1, "Shaxriyor", 20000, "comment", formattedDate);
+                    },
                   ),
                   RoundedButton(
                     text: "Ayirish",
                     color: Colors.red,
-                    press: () {},
+                    press: () {
+
+                    },
                   ),
                 ],
               ),
