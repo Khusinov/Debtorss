@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:debtors/AuthenticationServise/AuthenticationServise.dart';
+import 'package:debtors/DatabaseManager.dart';
 import 'package:debtors/Screens/Add/addAccount.dart';
 import 'package:flutter/material.dart';
 import 'package:debtors/constants.dart';
@@ -12,13 +14,50 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
+
+  TextEditingController _nameController = TextEditingController();
+  TextEditingController _genderController = TextEditingController();
+  TextEditingController _scoreController = TextEditingController();
+
+  List userProfilesList = [];
+
+  String userID = "";
+
+  @override
+  void initState() {
+    super.initState();
+   // fetchUserInfo();
+    fetchDatabaseList();
+  }
+  //
+  // fetchUserInfo() async {
+  //   FirebaseUser getUser = await FirebaseAuth.instance.currentUser();
+  //   userID = getUser.uid;
+  // }
+
+  fetchDatabaseList() async {
+    dynamic resultant = await DatabaseManager().getUsersData();
+
+    if (resultant == null) {
+      print('Unable to retrieve');
+    } else {
+      setState(() {
+       // Map<String, dynamic> data = resultant;
+        userProfilesList = resultant;
+        print(userProfilesList.toString());
+       // print(data[1]['name']);
+       // print("USERPROFILESLIST[1]:  ${userProfilesList[] }");
+      });
+    }
+  }
+
   ListView buildListView(BuildContext context) {
+    // print(" mytag ${userProfilesList[0].toList().toString()}");
     return ListView.builder(
-      itemCount: 50,
-      itemBuilder: (_, index) {
+      itemCount: userProfilesList.length,
+      itemBuilder: (context , index) {
         return GestureDetector(
           onTap: () => {
-
           },
           child: Container(
             padding: EdgeInsets.symmetric(vertical: 4, horizontal: 10),
@@ -28,7 +67,7 @@ class _BodyState extends State<Body> {
                 color: kPrimaryLightColor,
                 child: ListTile(
                   title: Text(
-                    '${index + 1}. Asadbek Bekchanov',
+                    '${index + 1}. ${ userProfilesList[index]['name']} ',
                     style: TextStyle(
                       color: Colors.blue,
                       fontSize: 20,
@@ -36,7 +75,7 @@ class _BodyState extends State<Body> {
 
                   ),
                   subtitle: Text(
-                    '320 000 so\'m  27.06.2021',
+                    '${userProfilesList[index]['summa']}  ${userProfilesList[index]['date']}',
                     style: TextStyle(color: Colors.redAccent),
                   ),
                   trailing: Icon(
